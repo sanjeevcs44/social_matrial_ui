@@ -1,23 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
-
+import logo from "./logo.svg";
+import { Button, makeStyles, Grid } from "@material-ui/core";
+import { Person } from "@material-ui/icons";
+//import "./App.css";
+import Navbar from "./components/Navbar";
+import Leftbar from "./components/Leftbar";
+import Feed from "./components/Feed";
+import Rightbar from "./components/Rightbar";
+import Ads from "./components/Ads";
+const userStyles = makeStyles((theme) => ({
+  button: {
+    color: "white",
+    backgroundColor: "black",
+  },
+  right: {
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
+  },
+}));
 function App() {
+  const classes = userStyles();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar />
+      <Grid container>
+        <Grid item sm={2} xs={2}>
+          <Leftbar />
+        </Grid>
+        <Grid item sm={7} xs={10}>
+          <Feed />
+        </Grid>
+        <Grid item sm={3} className={classes.right}>
+          <Rightbar />
+        </Grid>
+      </Grid>
+      <Ads />
     </div>
   );
 }
